@@ -38,3 +38,4 @@ Issues = "https://github.com/rblch/plotly-venn/issues"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["plotly_venn*"]
+exclude = ["tests*"]
