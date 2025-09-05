@@ -162,7 +162,6 @@ def _derive_colors(base_color: str) -> Tuple[str, str, str]:
     bg = _rgba_str((r, g, b, min(0.85, max(0.5, a + 0.25))))
     border = _rgba_str((r, g, b, 0.95))
     
-    # Use dark text on light background, light text on dark background
     luminance = 0.299 * r + 0.587 * g + 0.114 * b
     font = "#111" if luminance > 150 else "#f5f5f5"
     
@@ -182,7 +181,7 @@ def _ensure_alpha(color: str, default_alpha: float = 0.5) -> str:
     r, g, b, a = _parse_rgba(color)
     
     # If the color is fully opaque (alpha = 1.0), apply default transparency
-    if a >= 0.99:  # Use 0.99 to account for floating point precision
+    if a >= 0.99:  
         a = default_alpha
         
     return _rgba_str((r, g, b, a))
@@ -231,7 +230,7 @@ def venn(
     b_count = max(0, int(b_count))
     ab_count = max(0, int(ab_count))
     
-    # Ensure colors have proper alpha for transparency
+    # Ensure colors have enough transparency
     colors = (_ensure_alpha(colors[0]), _ensure_alpha(colors[1]))
     
     # Calculate effective intersection (cannot exceed either set)
